@@ -14,13 +14,6 @@ def run_initial_updater(path: Path):
     sys.path.append(str(path.joinpath('validate_email')))
     orig_dont_write_bytecode = sys.dont_write_bytecode
     sys.dont_write_bytecode = True
-    try:
-        from updater import BLACKLIST_FILEPATH_INSTALLED, BlacklistUpdater
-        log.info(f'downloading blacklist to {BLACKLIST_FILEPATH_INSTALLED}')
-        BlacklistUpdater()._install()
-    finally:
-        sys.path = sys.path[:-1]
-        sys.dont_write_bytecode = orig_dont_write_bytecode
 
 
 class DevelopCommand(develop):
